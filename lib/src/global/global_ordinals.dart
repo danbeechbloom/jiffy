@@ -28,6 +28,10 @@ Map<String, Ordinals> _builtInOrdinals = {
   'th': Ordinals(first: '', second: '', third: '', nth: ''),
   'sk': Ordinals(first: '.', second: '.', third: '.', nth: '.'),
   'cs': Ordinals(first: '.', second: '.', third: '.', nth: '.'),
+  'pa': Ordinals(first: '', second: '', third: '', nth: ''),
+  'ta': Ordinals(first: '', second: '', third: '', nth: ''),
+  'tl': Ordinals(first: '', second: '', third: '', nth: ''),
+  'ur': Ordinals(first: '', second: '', third: '', nth: ''),
 };
 
 Ordinals? _defaultOrdinals;
