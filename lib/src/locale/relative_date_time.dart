@@ -1746,6 +1746,147 @@ class CsRelativeDateTime extends RelativeDateTime {
   String wordSeparator() => ' ';
 }
 
+// BLOOM
+class PaRelativeDateTime extends RelativeDateTime {
+  @override
+  String prefixAgo() => '';
+  @override
+  String prefixFromNow() => '';
+  @override
+  String suffixAgo() => 'ਪਹਿਲਾਂ';
+  @override
+  String suffixFromNow() => 'ਵਿੱਚ';
+  @override
+  String lessThanOneMinute(int seconds) => 'ਕੁਝ ਸਕਿੰਟ';
+  @override
+  String aboutAMinute(int minutes) => 'ਇੱਕ ਮਿੰਟ';
+  @override
+  String minutes(int minutes) => '$minutes ਮਿੰਟ';
+  @override
+  String aboutAnHour(int minutes) => 'ਇੱਕ ਘੰਟਾ';
+  @override
+  String hours(int hours) => '$hours ਘੰਟੇ';
+  @override
+  String aDay(int hours) => 'ਇੱਕ ਦਿਨ';
+  @override
+  String days(int days) => '$days ਦਿਨ';
+  @override
+  String aboutAMonth(int days) => 'ਇੱਕ ਮਹੀਨਾ';
+  @override
+  String months(int months) => '$months ਮਹੀਨੇ';
+  @override
+  String aboutAYear(int year) => 'ਇੱਕ ਸਾਲ';
+  @override
+  String years(int years) => '$years ਸਾਲ';
+  @override
+  String wordSeparator() => ' ';
+}
+
+class TaRelativeDateTime extends RelativeDateTime {
+  @override
+  String prefixAgo() => '';
+  @override
+  String prefixFromNow() => '';
+  @override
+  String suffixAgo() => 'முன்பு';
+  @override
+  String suffixFromNow() => 'தில்';
+  @override
+  String lessThanOneMinute(int seconds) => 'சில வினாடிகள்';
+  @override
+  String aboutAMinute(int minutes) => 'ஒரு நிமிடம்';
+  @override
+  String minutes(int minutes) => '$minutes நிமிடங்கள்';
+  @override
+  String aboutAnHour(int minutes) => 'ஒரு மணி நேரம்';
+  @override
+  String hours(int hours) => '$hours மணி';
+  @override
+  String aDay(int hours) => 'ஒரு நாள்';
+  @override
+  String days(int days) => '$days நாட்கள்';
+  @override
+  String aboutAMonth(int days) => 'ஒரு மாதம்';
+  @override
+  String months(int months) => '$months மாதங்கள்';
+  @override
+  String aboutAYear(int year) => 'ஒரு வருடம்';
+  @override
+  String years(int years) => '$years ஆண்டுகள்';
+  @override
+  String wordSeparator() => ' ';
+}
+
+class TlRelativeDateTime extends RelativeDateTime {
+  @override
+  String prefixAgo() => '';
+  @override
+  String prefixFromNow() => 'sa loob ng';
+  @override
+  String suffixAgo() => 'ang nakalipas';
+  @override
+  String suffixFromNow() => '';
+  @override
+  String lessThanOneMinute(int seconds) => 'ilang segundo';
+  @override
+  String aboutAMinute(int minutes) => 'isang minuto';
+  @override
+  String minutes(int minutes) => '$minutes minuto ang nakalipas';
+  @override
+  String aboutAnHour(int minutes) => 'isang oras';
+  @override
+  String hours(int hours) => '$hours oras';
+  @override
+  String aDay(int hours) => 'isang araw';
+  @override
+  String days(int days) => '$days araw';
+  @override
+  String aboutAMonth(int days) => 'isang buwan';
+  @override
+  String months(int months) => '$months buwan';
+  @override
+  String aboutAYear(int year) => 'isang taon';
+  @override
+  String years(int years) => '$years taon';
+  @override
+  String wordSeparator() => ' ';
+}
+
+class UrRelativeDateTime extends RelativeDateTime {
+  @override
+  String prefixAgo() => '';
+  @override
+  String prefixFromNow() => 'اب سے';
+  @override
+  String suffixAgo() => 'پہلے';
+  @override
+  String suffixFromNow() => '';
+  @override
+  String lessThanOneMinute(int seconds) => 'چند سیکنڈ پہلے';
+  @override
+  String aboutAMinute(int minutes) => 'ایک منٹ';
+  @override
+  String minutes(int minutes) => '$minutes منٹ';
+  @override
+  String aboutAnHour(int minutes) => 'ایک گھنٹہ';
+  @override
+  String hours(int hours) => '$hours گھنٹے';
+  @override
+  String aDay(int hours) => 'ایک دن';
+  @override
+  String days(int days) => '$days دن';
+  @override
+  String aboutAMonth(int days) => 'ایک مہینہ';
+  @override
+  String months(int months) => '$months مہینے';
+  @override
+  String aboutAYear(int year) => 'ایک سال';
+  @override
+  String years(int years) => '$years سال';
+  @override
+  String wordSeparator() => ' ';
+}
+
 String _replaceToLocaleNum(String input, String locale) {
   var localeNumbers = {
     'en': ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'],
