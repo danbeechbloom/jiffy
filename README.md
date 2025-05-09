@@ -1,14 +1,14 @@
 # Jiffy
 
-[![Publish to pub.dev](https://github.com/jama5262/jiffy/actions/workflows/publish.yml/badge.svg)](https://github.com/jama5262/jiffy/actions/workflows/publish.yml)
+[![Continuous Integration](https://github.com/jama5262/jiffy/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/jama5262/jiffy/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/jama5262/jiffy/branch/master/graph/badge.svg?token=Z2EGVUGWTE)](https://codecov.io/gh/jama5262/jiffy)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Pub Version](https://img.shields.io/badge/pub.dev-v6.3.1-blue)](https://pub.dev/packages/jiffy/versions/6.3.1)
+[![Pub Version](https://img.shields.io/badge/pub.dev-v6.4.3-blue)](https://pub.dev/packages/jiffy/versions/6.4.3)
 ![Platform](https://img.shields.io/badge/platform-flutter%7Cweb%7Cdart%20vm-orange)
 
 Jiffy is a Flutter (Android, IOS and Web) date time package for parsing, manipulating, querying and formatting dates and time
 
-### [Full Documentation](./doc) | [API Reference](https://pub.dev/documentation/jiffy/latest/jiffy/Jiffy-class.html) | [Installation](https://pub.dev/packages/jiffy/install) | [ChangeLog](https://pub.dev/packages/jiffy/changelog) | [Examples](https://pub.dev/packages/jiffy/example)
+### [Full Documentation](https://github.com/jama5262/jiffy/tree/v6.4.3/doc) | [API Reference](https://pub.dev/documentation/jiffy/latest/jiffy/Jiffy-class.html) | [Installation](https://pub.dev/packages/jiffy/install) | [ChangeLog](https://pub.dev/packages/jiffy/changelog) | [Examples](https://pub.dev/packages/jiffy/example)
 
 ### [Discussions](https://github.com/jama5262/jiffy/discussions)
 
@@ -87,9 +87,9 @@ Jiffy.parse('1997/9/23')
 ## Locale Support
 ```dart
 // Get current locale code, by default it is en_us
-Jiffy.now().localeCode; // en_us
+Jiffy.now().localeCode; // en_US
 
-//  Setting your preferred locale
+// Setting your preferred locale
 await Jiffy.setLocale('fr_ca');
 Jiffy.now().yMMMMEEEEdjm; // dimanche 26 février 2023 12 h 03
 
@@ -110,7 +110,6 @@ Reach out to me at one of the following places!
 
 - Email me at [jama3137@gmail.com](mailto:jama3137@gmail.com)
 - LinkedIn [Jama Mohamed](https://www.linkedin.com/in/jama-mohamed/)
-- Twitter [timedjama5262](https://twitter.com/timedjama5262)
 
 
 ## License

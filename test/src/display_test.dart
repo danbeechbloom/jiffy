@@ -1,19 +1,30 @@
 import 'package:jiffy/jiffy.dart';
 import 'package:jiffy/src/display.dart';
-import 'package:jiffy/src/enums/unit.dart';
 import 'package:jiffy/src/getter.dart';
-import 'package:jiffy/src/locale/locales/en_locale.dart';
+import 'package:jiffy/src/locale/locale.dart';
 import 'package:jiffy/src/manipulator.dart';
 import 'package:jiffy/src/query.dart';
 import 'package:jiffy/src/utils/jiffy_exception.dart';
 import 'package:test/test.dart';
 
-void main() {
-  final getter = Getter();
-  final manipulator = Manipulator(getter);
-  final query = Query(getter, manipulator);
+final getter = Getter();
+final manipulator = Manipulator(getter);
+final query = Query(getter, manipulator);
 
-  final underTest = Display(getter, manipulator, query);
+final underTest = Display(getter, manipulator, query);
+
+late Locale locale;
+
+void main() {
+  setUp(() async {
+    Jiffy.setLocale("en_US");
+    final jiffy = Jiffy.now();
+    locale = Locale(
+        code: jiffy.localeCode,
+        ordinals: jiffy.ordinals,
+        startOfWeek: jiffy.startOfWeek,
+        relativeDateTime: jiffy.relativeDateTime);
+  });
 
   test('Should successfully format datetime is iso when pattern not provided',
       () {
@@ -32,9 +43,6 @@ void main() {
   group('Test format with pattern', () {
     for (var testData in formatWithPatternDateTimeTestData()) {
       test('Should successfully format datetime when pattern is provided', () {
-        // Setup
-        final locale = EnLocale();
-
         // Execute
         final actualFormat =
             underTest.format(testData['dateTime'], testData['pattern'], locale);
@@ -46,9 +54,6 @@ void main() {
 
     for (var testData in formatWithEscapedPatternDateTimeTestData()) {
       test('Should successfully format datetime with escaped pattern', () {
-        // Setup
-        final locale = EnLocale();
-
         // Execute
         final actualFormat =
             underTest.format(testData['dateTime'], testData['pattern'], locale);
@@ -60,9 +65,6 @@ void main() {
 
     for (var testData in formatWithOrdinalPatternDateTimeTestData()) {
       test('Should successfully format datetime with ordinal pattern', () {
-        // Setup
-        final locale = EnLocale();
-
         // Execute
         final actualFormat =
             underTest.format(testData['dateTime'], testData['pattern'], locale);
@@ -76,7 +78,6 @@ void main() {
       // Setup
       final dateTime = DateTime(1997, 9, 23, 12, 11, 22, 123, 456);
       final pattern = '';
-      final locale = EnLocale();
 
       final expectedExceptionMessage = 'The provided pattern for datetime '
           '`$dateTime` cannot be blank';
@@ -92,14 +93,14 @@ void main() {
   group('Test from as relative between two datetime', () {
     for (var testData in fromAsRelativeDateTimeTestData()) {
       test('Should successfully get from as relative datetime', () {
-        final locale = EnLocale();
-
+        // Execute
         final actualFromAsRelativeDateTime = underTest.fromAsRelativeDateTime(
             testData['firstDateTime'],
             testData['secondDateTime'],
             locale,
             true);
 
+        // Verify
         expect(actualFromAsRelativeDateTime,
             testData['expectedFromAsRelativeDateTime']);
       });
@@ -108,7 +109,6 @@ void main() {
     test(
         'Should successfully get from as relative datetime without prefix and suffix',
         () {
-      final locale = EnLocale();
       final firstDateTime = DateTime(1997, 10, 23, 12, 11, 22, 123, 456);
       final secondDateTime = DateTime(1998, 10, 23, 12, 11, 22, 123, 457);
       final withPrefixAndSuffix = false;
@@ -123,8 +123,6 @@ void main() {
 
     for (var testData in toAsRelativeDateTimeTestData()) {
       test('Should successfully get to as relative datetime', () {
-        final locale = EnLocale();
-
         final actualToAsRelativeDateTime = underTest.toAsRelativeDateTime(
             testData['firstDateTime'],
             testData['secondDateTime'],
@@ -139,7 +137,6 @@ void main() {
     test(
         'Should successfully get to as relative datetime without prefix and suffix',
         () {
-      final locale = EnLocale();
       final firstDateTime = DateTime(1997, 10, 23, 12, 11, 22, 123, 456);
       final secondDateTime = DateTime(1998, 10, 23, 12, 11, 22, 123, 457);
       final withPrefixAndSuffix = false;

@@ -1,3 +1,55 @@
+# 6.4.3
+
+## What's Changed
+* [JIFFY-308] Fix potential rounding error for relative date time calculations by @jama5262 in https://github.com/jama5262/jiffy/pull/314
+* [JIFFY-311] Remove the Locale object, no need to export publicly by @jama5262 in https://github.com/jama5262/jiffy/pull/315
+
+
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v6.4.2...v6.4.3
+
+# 6.4.2
+
+## What's Changed
+* Improved hindi translation for 'ago' by @aruhant in https://github.com/jama5262/jiffy/pull/307
+* [JIFFY-311] Rename Locale to JiffyLocale to avoid clashes with other packages by @jama5262 in https://github.com/jama5262/jiffy/pull/312
+
+## New Contributors
+* @aruhant made their first contribution in https://github.com/jama5262/jiffy/pull/307
+
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v6.4.1...v6.4.2
+
+# 6.4.1
+
+## What's Changed
+* Update verify_locale.dart by @yoman07 in https://github.com/jama5262/jiffy/pull/309
+
+## New Contributors
+* @yoman07 made their first contribution in https://github.com/jama5262/jiffy/pull/309
+
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v6.4.0...v6.4.1
+
+# 6.4.0
+
+## What's Changed
+* [JIFFY-293] Make locale settings configurable in Jiffy by @jama5262 in https://github.com/jama5262/jiffy/pull/294
+* [JIFFY-297] Fix documentation by @jama5262 in https://github.com/jama5262/jiffy/pull/298
+* Bump lints from 3.0.0 to 5.1.1 by @dependabot in https://github.com/jama5262/jiffy/pull/291
+* JIFFY[257] - Fix: Use NumberFormat for locale-aware numeral parsing by @jama5262 in https://github.com/jama5262/jiffy/pull/299
+* JIFFY[300] - Fix Locale Code Validation: Normalize and Verify Supported Formats by @jama5262 in https://github.com/jama5262/jiffy/pull/301
+* JIFFY[281] - Add ISO 8601 String Parsing Support to Jiffy by @jama5262 in https://github.com/jama5262/jiffy/pull/302
+* JIFFY[303] - Add toString Support for Jiffy by @jama5262 in https://github.com/jama5262/jiffy/pull/304
+
+
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v6.3.2...v6.4.0
+
+# 6.3.2
+
+## What's Changed
+* Bump intl from 0.19.0 to 0.20.1 by @jama5262 in https://github.com/jama5262/jiffy/pull/288
+
+
+**Full Changelog**: https://github.com/jama5262/jiffy/compare/v6.3.1...v6.3.2
+
 # 6.3.1
 
 ## What's Changed

@@ -1,4 +1,5 @@
 import 'package:intl/intl.dart';
+import 'package:jiffy/src/locale/ordinals.dart';
 
 import 'enums/unit.dart';
 import 'getter.dart';
@@ -17,19 +18,17 @@ class Parser {
         throw JiffyException('The provided pattern for input `$input` cannot '
             'be blank');
       }
-      final ordinals = locale.ordinals();
-      return _parseString(_replaceParseInput(input, ordinals),
+      final ordinals = locale.ordinals;
+      return _parseString(locale.code, _replaceParseInput(input, ordinals),
               _replacePatternInput(pattern))
           .copyWith(isUtc: isUtc);
     }
 
-    if (_matchesHyphenStringDateTime(input)) {
-      return _parseString(input, 'yyyy-MM-dd').copyWith(isUtc: isUtc);
-    } else if (_matchesSlashStringDateTime(input)) {
-      return _parseString(input, 'yyyy/MM/dd').copyWith(isUtc: isUtc);
-    } else if (_matchesDartStringDateTime(input) ||
-        _matchesISOStringDateTime(input)) {
-      return DateTime.parse(input).copyWith(isUtc: isUtc);
+    if (_matchesSlashStringDateTime(input)) {
+      return _parseString(locale.code, input, 'yyyy/MM/dd');
+    } else if (_matchesIsoDateTime(input) ||
+        _matchesDartStringDateTime(input)) {
+      return DateTime.parse(input);
     } else {
       throw JiffyException(
           'Could not read date time of input `$input`, try using a pattern, '
@@ -70,9 +69,9 @@ class Parser {
         .copyWith(isUtc: isUtc);
   }
 
-  DateTime _parseString(String input, String pattern) {
+  DateTime _parseString(String locale, String input, String pattern) {
     try {
-      return DateFormat(pattern).parse(input);
+      return DateFormat(pattern, locale).parse(input);
     } on FormatException catch (e) {
       throw JiffyException('Could not parse input `$input`, failed with the '
           'following error: ${e.toString()}');
@@ -83,22 +82,11 @@ class Parser {
     return pattern.replaceFirst('do', 'd');
   }
 
-  String _replaceParseInput(String input, List<String> ordinals) {
+  String _replaceParseInput(String input, Ordinals ordinals) {
     return input
         .replaceFirst(' pm', ' PM')
         .replaceFirst(' am', ' AM')
         .replaceFirst(_matchesOrdinalDates(input, ordinals), '');
-  }
-
-  String _matchesOrdinalDates(String input, List<String> ordinals) {
-    final matches =
-        // ignore: prefer_interpolation_to_compose_strings
-        RegExp(r'\d+\s*(' + ordinals.join('|') + ')').allMatches(input);
-    return matches.isNotEmpty ? matches.first.group(1) ?? '' : '';
-  }
-
-  bool _matchesHyphenStringDateTime(String input) {
-    return RegExp(r'\d{4}-\d{1,2}-\d{1,2}$').hasMatch(input);
   }
 
   bool _matchesSlashStringDateTime(String input) {
@@ -111,9 +99,41 @@ class Parser {
         .hasMatch(input);
   }
 
-  bool _matchesISOStringDateTime(String input) {
-    return RegExp(
-            r'\d{4}-\d{1,2}-\d{1,2}T\d{1,2}(:\d{1,2})?(:\d{1,2})?(.\d+)?(Z?)$')
+  bool _matchesIsoDate(String input) {
+    return RegExp(r'\d{4}-\d{1,2}-\d{1,2}$').hasMatch(input);
+  }
+
+  bool _matchesIsoLocalDateTime(String input) {
+    return RegExp(r'^(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])'
+            r'T([01][0-9]|2[0-3]):([0-5][0-9])(:([0-5][0-9]|60)(\.\d+)?)?$')
         .hasMatch(input);
+  }
+
+  bool _matchesIsoUtcDateTime(String input) {
+    return RegExp(r'^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])'
+            r'T([01][0-9]|2[0-3]):([0-5][0-9])(:([0-5][0-9]|60)(\.\d+)?)?Z$')
+        .hasMatch(input);
+  }
+
+  bool _matchesIsoUtcOffsetDateTime(String input) {
+    return RegExp(r'^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])'
+            r'T([01][0-9]|2[0-3]):([0-5][0-9])(:([0-5][0-9]|60)(\.\d+)?)?'
+            r'([+-](0[0-9]|1[0-4]):([0-5][0-9]))$')
+        .hasMatch(input);
+  }
+
+  bool _matchesIsoDateTime(String input) {
+    return _matchesIsoDate(input) ||
+        _matchesIsoLocalDateTime(input) ||
+        _matchesIsoUtcDateTime(input) ||
+        _matchesIsoUtcOffsetDateTime(input);
+  }
+
+  String _matchesOrdinalDates(String input, Ordinals ordinals) {
+    final matches =
+        // ignore: prefer_interpolation_to_compose_strings
+        RegExp(r'\d+\s*(' + ordinals.asList().join('|') + ')')
+            .allMatches(input);
+    return matches.isNotEmpty ? matches.first.group(1) ?? '' : '';
   }
 }
